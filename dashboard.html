@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DashSales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container-fluid"> 
+        <a class="navbar-brand fw-bold" href="dashboard.html">
+            <i class="bi bi-bar-chart-line-fill text-primary"></i> DashSales
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="pedidos.html">Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" href="produtos.html">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> Usuário
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="perfil.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="configuracoes.html">Configurações</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="index.html">Sair</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main class="container-fluid pt-5">
+        <div class="px-4">
+            <h1 class="h2 fw-bold mb-4">Dashboard</h1>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="bi bi-currency-dollar display-4 text-success me-3"></i>
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Vendas (Hoje)</h6>
+                                <p class="card-text h4 fw-bold">R$ 1.850,75</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="bi bi-cart4 display-4 text-primary me-3"></i>
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Novos Pedidos</h6>
+                                <p class="card-text h4 fw-bold">32</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="bi bi-people-fill display-4 text-info me-3"></i>
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Novos Clientes</h6>
+                                <p class="card-text h4 fw-bold">8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="bi bi-exclamation-triangle-fill display-4 text-danger me-3"></i>
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Estoque Baixo</h6>
+                                <p class="card-text h4 fw-bold">3 produtos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title fw-bold mb-0">Vendas nos Últimos 7 Dias</h5>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title fw-bold mb-0">Pedidos Recentes</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-receipt-cutoff fs-4 text-primary me-3"></i>
+                                    <div>
+                                        <div class="fw-bold">Pedido #1055</div>
+                                        <small class="text-muted">Cliente: Gabriela Almeida</small>
+                                    </div>
+                                    <span class="ms-auto fw-bold text-success">R$ 4.120,00</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-receipt-cutoff fs-4 text-primary me-3"></i>
+                                    <div>
+                                        <div class="fw-bold">Pedido #1054</div>
+                                        <small class="text-muted">Cliente: Ana Silva</small>
+                                    </div>
+                                    <span class="ms-auto fw-bold text-success">R$ 3.200,00</span>
+                                </div>
+                            </li>
+                             <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-receipt-cutoff fs-4 text-primary me-3"></i>
+                                    <div>
+                                        <div class="fw-bold">Pedido #1053</div>
+                                        <small class="text-muted">Cliente: Bruno Costa</small>
+                                    </div>
+                                    <span class="ms-auto fw-bold text-info">R$ 1.800,00</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-receipt-cutoff fs-4 text-primary me-3"></i>
+                                    <div>
+                                        <div class="fw-bold">Pedido #1052</div>
+                                        <small class="text-muted">Cliente: Carlos Pereira</small>
+                                    </div>
+                                    <span class="ms-auto fw-bold text-warning">R$ 7.500,00</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-12">
+                     <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title fw-bold mb-0">Top 5 Produtos Mais Vendidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Vendas (Unid.)</th>
+                                        <th scope="col">Receita</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><i class="bi bi-laptop me-2"></i> Notebook Pro X</td>
+                                        <td>250</td>
+                                        <td>R$ 1.875.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-phone me-2"></i> Smartphone Y</td>
+                                        <td>180</td>
+                                        <td>R$ 576.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-display me-2"></i> Monitor 4K 27"</td>
+                                        <td>150</td>
+                                        <td>R$ 375.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-mouse me-2"></i> Mouse Gamer Z</td>
+                                        <td>110</td>
+                                        <td>R$ 16.500</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="bi bi-keyboard me-2"></i> Teclado Mecânico</td>
+                                        <td>95</td>
+                                        <td>R$ 28.500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
